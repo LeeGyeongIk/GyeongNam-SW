@@ -18,12 +18,12 @@
         crossorigin="anonymous"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBGIvDFKwHEVYA_PP3f4pnukYmS51y_I_I",
-            authDomain: "gyeonam-sw.firebaseapp.com",
-            projectId: "gyeonam-sw",
-            storageBucket: "gyeonam-sw.appspot.com",
-            messagingSenderId: "1050928978033",
-            appId: "1:1050928978033:web:6bd5a77a735f349a6623d0"
+            apiKey: "AIzaSyBzWGqNmb6KazuZB_ykjg1zkS-YWSaFFBk",
+            authDomain: "store-reservation-system.firebaseapp.com",
+            projectId: "store-reservation-system",
+            storageBucket: "store-reservation-system.appspot.com",
+            messagingSenderId: "734537126957",
+            appId: "1:734537126957:web:5d84d462476d77ddbbd4a4"
         };
         firebase.initializeApp(firebaseConfig);
     </script>
@@ -121,7 +121,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="user_main">매장예약서비스</a>
+            <a class="navbar-brand" href="user_main">RES 24</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -160,12 +160,12 @@
     </nav>
 
     <div class="container mt-3">
-        <div class="search" style="margin: 0 auto;margin-bottom: 3%;max-width:500px;width:100%">
+        <div class="search" style="margin: 0 auto;margin-bottom: 3%;max-width:500px;width:100%; margin-top: 10%">
             <input type="text" placeholder="매장명을 입력하세요" id="searchbox" onkeyup="vacuum()">
             <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" id="searchimg"
                 onclick="filter()">
         </div>
-        <div class="row" id="content-body"></div>
+        <div class="row" id="content-body" style="margin-top: 15%"></div>
     </div>
 
     <div id="loading">

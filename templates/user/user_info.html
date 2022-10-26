@@ -18,22 +18,28 @@
         crossorigin="anonymous"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBGIvDFKwHEVYA_PP3f4pnukYmS51y_I_I",
-            authDomain: "gyeonam-sw.firebaseapp.com",
-            projectId: "gyeonam-sw",
-            storageBucket: "gyeonam-sw.appspot.com",
-            messagingSenderId: "1050928978033",
-            appId: "1:1050928978033:web:6bd5a77a735f349a6623d0"
+            apiKey: "AIzaSyBzWGqNmb6KazuZB_ykjg1zkS-YWSaFFBk",
+            authDomain: "store-reservation-system.firebaseapp.com",
+            projectId: "store-reservation-system",
+            storageBucket: "store-reservation-system.appspot.com",
+            messagingSenderId: "734537126957",
+            appId: "1:734537126957:web:5d84d462476d77ddbbd4a4"
         };
         firebase.initializeApp(firebaseConfig);
     </script>
     <title>Document</title>
 </head>
 
+<style>
+    body {
+        background-color: #b8dbfd !important;
+    }
+</style>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="user_main">매장예약서비스</a>
+            <a class="navbar-brand" href="user_main">RES 24</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -73,10 +79,11 @@
 
     <div style="text-align:center;font-size: 3em;margin-top:5%;">내 정보</div>
     <div class="container mt-3"
-        style="max-width:500px;width:100%;margin: 0 auto;border: 1px solid gainsboro;border-radius: 10px;margin-bottom:2%">
+        style="max-width:500px;width:100%;margin: 0 auto;border: 1px solid gainsboro;border-radius: 10px;margin-bottom:2%; background-color: white;">
         <div style="padding:3%">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="name" placeholder="Name" style="max-width:500px;width:100%" disabled readonly>
+                <input type="text" class="form-control" id="name" placeholder="Name" style="max-width:500px;width:100%"
+                    disabled readonly>
                 <label for="floatingInput">Name</label>
             </div>
             <div class="form-floating mb-3">
@@ -94,7 +101,7 @@
     <div style="max-width:500px;width:100%;margin: 0 auto">
         <button type="submit" class="btn btn-primary btn-sm" id="back" style="width:100%">돌아가기</button>
     </div>
-    
+
     <script>
         const db = firebase.firestore();
 

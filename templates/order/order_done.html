@@ -19,12 +19,12 @@
         crossorigin="anonymous"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBGIvDFKwHEVYA_PP3f4pnukYmS51y_I_I",
-            authDomain: "gyeonam-sw.firebaseapp.com",
-            projectId: "gyeonam-sw",
-            storageBucket: "gyeonam-sw.appspot.com",
-            messagingSenderId: "1050928978033",
-            appId: "1:1050928978033:web:6bd5a77a735f349a6623d0"
+            apiKey: "AIzaSyBzWGqNmb6KazuZB_ykjg1zkS-YWSaFFBk",
+            authDomain: "store-reservation-system.firebaseapp.com",
+            projectId: "store-reservation-system",
+            storageBucket: "store-reservation-system.appspot.com",
+            messagingSenderId: "734537126957",
+            appId: "1:734537126957:web:5d84d462476d77ddbbd4a4"
         };
         firebase.initializeApp(firebaseConfig);
     </script>
@@ -93,14 +93,16 @@
     </div>
     <div id="message" style="display:none">
         <button type="button" class="btn btn-light" id="SMS_button" style="width:100%">SMS 알림받기</button>
+        <!-- <input type="text" class="form-control" id="SMS_phone_number" name="phone_number" style="display:none" value="">
+        <input type="text" class="form-control" id="SMS_content" name="SMS_content" style="display:none" value=""> -->
         <!-- <form action="/order/order_done" method="post"> -->
-        <form method="post">
+        <!-- <form method="post">
             <input type="text" class="form-control" id="SMS_phone_number" name="phone_number" style="display:none"
                 value="">
             <input type="text" class="form-control" id="SMS_content" name="SMS_content" style="display:none"
                 value="">
             <button type="submit" id="SMS_send" style="display:none"></button>
-        </form>
+        </form> -->
     </div>
 
     <script>
@@ -110,6 +112,8 @@
         var order = querystring.get("order_id").toString();
         var table_num = querystring.get("table_num").toString();
         var is_pay_success = querystring.get("error_msg");
+        var phone_number;
+        var sms_content;
 
         if (is_pay_success == null) {
             $("#message").attr("style", "max-width:500px;width:100%;margin: 0 auto");
@@ -134,20 +138,26 @@
                     // var audio = new Audio("alarm.mp3");
                     // audio.play();
 
-                    if ($("#SMS_phone_number").val() != "") {
-                        $("#SMS_send").click();
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: '주문하신 메뉴가 준비되었습니다.',
-                            text: '주문번호: ' + order
-                        });
-                        $("#order_ready_title").html("주문하신 메뉴가<br>준비되었습니다.");
-                        $("#order_ready_num").attr("style", "text-align:center;font-size: 2em;margin-bottom:2%");
-                        $("#order_ready_num").html("주문번호<br>" + order);
-                        $("#get_back").attr("style", "max-width:500px;width:100%;margin: 0 auto");
-                        $("#SMS_button").attr("style", "display:none");
-                    }
+                    $.ajax({
+                        url: '/order/order_done',
+                        data: {
+                            phone_number: phone_number,
+                            sms_content: sms_content
+                        },
+                        type: 'POST'
+                    });
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: '주문하신 메뉴가 준비되었습니다.',
+                        text: '주문번호: ' + order
+                    });
+
+                    $("#order_ready_title").html("주문하신 메뉴가<br>준비되었습니다.");
+                    $("#order_ready_num").attr("style", "text-align:center;font-size: 2em;margin-bottom:2%");
+                    $("#order_ready_num").html("주문번호<br>" + order);
+                    $("#get_back").attr("style", "max-width:500px;width:100%;margin: 0 auto");
+                    $("#SMS_button").attr("style", "display:none");
                 }
             })
         } else if (is_pay_success != null) {
@@ -164,7 +174,7 @@
 
         $("#SMS_button").click(function () {
             (async () => {
-                const { value: getName } = await Swal.fire({
+                const { value: getNumber } = await Swal.fire({
                     title: '전화번호를 입력해주세요',
                     text: '숫자만 입력하세요',
                     input: 'text',
@@ -172,9 +182,15 @@
                 })
 
                 // 이후 처리되는 내용.
-                if (getName) {
-                    $("#SMS_phone_number").val(getName);
-                    $("#SMS_content").val(`매장 "${localStorage.getItem("store_name")}"의 주문이 완료되었습니다. 매장에 방문해주시기 바랍니다.`);
+                if (getNumber) {
+                    phone_number = getNumber;
+                    sms_content = `매장 "${localStorage.getItem("store_name")}"의 주문이 완료되었습니다. 매장에 방문해주시기 바랍니다.`;
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: '준비완료 시 알림 메시지를 보내드리겠습니다',
+                        text: `입력하신 전화번호${phone_number}로 메시지를 보내드리겠습니다.`
+                    })
                 } else {
                     Swal.fire(`SMS를 발송하지 못했습니다.`);
                 }

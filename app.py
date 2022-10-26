@@ -20,7 +20,7 @@ def order():
 @app.route('/order/order_done', methods=['POST', 'GET'])
 def order_done():
     if request.method == 'POST':
-        naverSENS.send_sms("01037225398",request.form['phone_number'],"[알림서비스]",request.form['SMS_content'])
+        naverSENS.send_sms("01037225398",request.form['phone_number'],"[알림서비스]",request.form['sms_content'])
     return render_template('/order/order_done.html')
 
 @app.route('/order/deffered_pay_done')

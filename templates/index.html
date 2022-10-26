@@ -1,14 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Document</title>
 </head>
+
+<style>
+    .intro_content_box {
+        width: 100vw;
+        height: 100vh;
+        background-color: #04123f;
+        padding: 10% 0% 0% 20%;
+        text-align: left;
+    }
+
+    .intro_animation {
+        animation: FadeIn 1s linear forwards;
+    }
+
+    .intro_text_1 {
+        font-weight: 700;
+        font-size: 1.5em;
+        letter-spacing: -0.6px;
+        color: rgb(255, 255, 255);
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .intro_text_2 {
+        font-weight: 800;
+        font-size: 2.5em;
+        letter-spacing: -2px;
+        color: rgb(255, 255, 255);
+        display: flex;
+    }
+
+    .intro_text_3 {
+        line-height: 0.8;
+        font-weight: 800;
+        font-size: 2.5em;
+        letter-spacing: -2px;
+        color: rgb(255, 255, 255);
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .intro_text_4 {
+        font-weight: 800;
+        font-size: 72px;
+        letter-spacing: -2px;
+        color: rgb(71, 131, 255);
+        display: flex;
+        margin-bottom: 80px;
+    }
+
+    .store_btn {
+        font-weight: 400;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .client_btn {
+        font-weight: 400;
+        font-size: 20px;
+    }
+
+    @keyframes FadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+
 <body>
+    <div class="intro_content_box">
+        <div class="intro_animation">
+            <span class="intro_text_1">QR코드 기반</span>
+            <span class="intro_text_2">매장 예약 및</span>
+            <span class="intro_text_3">키오스크 서비스</span>
+            <span class="intro_text_4">RES 24</span>
+            <button type="button" class="btn btn-light store_btn">사업자로 시작하기</button>
+            <button type="button" class="btn btn-warning client_btn">고객으로 시작하기</button>
+        </div>
+    </div>
+
     <script>
-        window.location.href = '/user/login'
+        $(".store_btn").click(() => {
+            window.location.href = '/store/login';
+        })
+
+        $(".client_btn").click(() => {
+            window.location.href = '/user/login';
+        })
     </script>
 </body>
+
 </html>

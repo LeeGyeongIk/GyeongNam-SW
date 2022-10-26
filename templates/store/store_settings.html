@@ -18,12 +18,12 @@
         crossorigin="anonymous"></script>
     <script>
         const firebaseConfig = {
-            apiKey: "AIzaSyBGIvDFKwHEVYA_PP3f4pnukYmS51y_I_I",
-            authDomain: "gyeonam-sw.firebaseapp.com",
-            projectId: "gyeonam-sw",
-            storageBucket: "gyeonam-sw.appspot.com",
-            messagingSenderId: "1050928978033",
-            appId: "1:1050928978033:web:6bd5a77a735f349a6623d0"
+            apiKey: "AIzaSyBzWGqNmb6KazuZB_ykjg1zkS-YWSaFFBk",
+            authDomain: "store-reservation-system.firebaseapp.com",
+            projectId: "store-reservation-system",
+            storageBucket: "store-reservation-system.appspot.com",
+            messagingSenderId: "734537126957",
+            appId: "1:734537126957:web:5d84d462476d77ddbbd4a4"
         };
         firebase.initializeApp(firebaseConfig);
     </script>
@@ -107,9 +107,11 @@
             <div class="container mt-3"
                 style="max-width:500px;width:100%;margin: 0 auto;border: 1px solid gainsboro;border-radius: 10px;margin-bottom:2%">
                 <div style="padding:3%;display:flex;justify-content:center">
-                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%" id="table_minus">-</button>
+                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%"
+                        id="table_minus">-</button>
                     <h1 id="table_num" style="margin:2%"></h1>
-                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%" id="table_plus">+</button>
+                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%"
+                        id="table_plus">+</button>
                 </div>
             </div>
         </div>
@@ -118,13 +120,16 @@
             <div class="container mt-3"
                 style="max-width:500px;width:100%;margin: 0 auto;border: 1px solid gainsboro;border-radius: 10px;margin-bottom:2%">
                 <div style="padding:3%;display:flex;justify-content:center">
-                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%" id="reservation_minus">-</button>
+                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%"
+                        id="reservation_minus">-</button>
                     <h1 id="max_reservation_num" style="margin:2%"></h1>
-                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%" id="reservation_plus">+</button>
+                    <button type="button" class="btn btn-primary" style="max-width:30px;width:100%"
+                        id="reservation_plus">+</button>
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" style="max-width:500px;width:100%;margin-top:10%" id="apply">적용</button>
+        <button type="button" class="btn btn-primary" style="max-width:500px;width:100%;margin-top:10%"
+            id="apply">적용</button>
     </div>
 
     <script>
@@ -138,24 +143,24 @@
             $("#main").attr("style", "max-width:500px;width:100%;margin: 0 auto;margin-top:5%;");
         })
 
-        $("#table_minus").click(function() {
+        $("#table_minus").click(function () {
             if ($("#table_num").html() > 1) {
-                $("#table_num").html((Number($("#table_num").html())-1).toString());
+                $("#table_num").html((Number($("#table_num").html()) - 1).toString());
             }
         })
-        $("#table_plus").click(function() {
-            $("#table_num").html((Number($("#table_num").html())+1).toString());
+        $("#table_plus").click(function () {
+            $("#table_num").html((Number($("#table_num").html()) + 1).toString());
         })
 
-        $("#reservation_minus").click(function() {
+        $("#reservation_minus").click(function () {
             if ($("#max_reservation_num").html() > 1) {
-                $("#max_reservation_num").html((Number($("#max_reservation_num").html())-1).toString());
+                $("#max_reservation_num").html((Number($("#max_reservation_num").html()) - 1).toString());
             }
         })
-        $("#reservation_plus").click(function() {
-            $("#max_reservation_num").html((Number($("#max_reservation_num").html())+1).toString());
+        $("#reservation_plus").click(function () {
+            $("#max_reservation_num").html((Number($("#max_reservation_num").html()) + 1).toString());
         })
-        $("#apply").click(function() {
+        $("#apply").click(function () {
             db.collection("매장").doc(localStorage.getItem("entrepreneur_uid")).update({
                 테이블갯수: Number($("#table_num").html()),
                 최대예약갯수: Number($("#max_reservation_num").html())
@@ -208,7 +213,7 @@
             }
         }
     </script>
-    
+
     <script>
         function logout() {
             firebase.auth().signOut().then(() => {
